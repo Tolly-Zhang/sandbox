@@ -56,4 +56,6 @@ The script expects tool locations in `config.json` (or available on PATH where a
 | `Defaults.KeepTemp`     | `bool`   | Whether to keep temporary working folders for debugging.                                                        |
 
 ## Usage
-Double-click `run-normal.vbs` to run in normal mode or `run-scanned.vbs` for scanned PDFs. You can also create a shortcuts to the .vbs files for easier access.
+Double-click `run-normal.vbs` to run in normal mode or `run-scanned.vbs` for scanned PDFs. 
+
+You can also create a shortcuts to the .vbs files for easier access.

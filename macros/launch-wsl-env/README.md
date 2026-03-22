@@ -43,4 +43,6 @@ This macro launches a VS Code environment from a specified path in WSL. It does 
 | `ShowWindow` | `true` to keep the PowerShell window visible, `false` to relaunch hidden |
 
 ## Usage
-Double-click the .vbs file to launch the macro. You can also create a shortcut to the .vbs file for easier access.
+Double-click the .vbs file to launch the macro. 
+
+You can also create a shortcut to the .vbs file for easier access.
