@@ -1,5 +1,7 @@
 # PDF Underlay
 
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue?style=for-the-badge&logo=github)](https://download-directory.github.io/?url=https://github.com/Tolly-Zhang/sandbox/tree/main/macros/pdf-underlay)
+
 This macro applies a underlay to PDF files using a reference PDF. It can be used to add a background or template to existing PDFs. It works with both normal PDFs and scanned PDFs, using different processing flows for each.
 
 ## Prerequisites

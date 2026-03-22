@@ -1,5 +1,7 @@
 # Launch WSL VS-Code Environment
 
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue?style=for-the-badge&logo=github)](https://download-directory.github.io/?url=https://github.com/Tolly-Zhang/sandbox/tree/main/macros/launch-wsl-env)
+
 This macro launches a VS Code environment from a specified path in WSL. It does so by running a preconfigured macro in WSL.
 
 ## Prerequisites

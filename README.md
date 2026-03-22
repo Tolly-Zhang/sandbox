@@ -7,6 +7,8 @@ Each script or macro is contained in its own folder with a `README` and `config.
 - The `README` contains instructions for setup, configuration, and usage. 
 - The `config.json` allows you to customize the behavior of the script or macro.
 
+Each one can be downloaded as a `.zip` file by clicking the **Download ZIP** badge in the README, and the resulting folder is portable.
+
 ## Configs
 
 |                     #                      | Name            | Description                                                                 |
@@ -18,4 +20,4 @@ Each script or macro is contained in its own folder with a `README` and `config.
 |              #               | Name                   | Description                                                  |
 | :--------------------------: | :--------------------- | :----------------------------------------------------------- |
 | [[1]](macros/launch-wsl-env) | Launch WSL Environment | Launches a VS Code environment from a specified path in WSL. |
-|  [[2]](macros/pdf-underlay)  | PDF Underlay           | Adds an underlay to PDF files using a reference PDF.         |
+|  [[2]](macros/pdf-underlay)  | PDF Underlay           | Adds an underlay to PDF files using a reference PDF.         |   
