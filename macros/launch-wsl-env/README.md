@@ -16,12 +16,12 @@ This macro launches a VS Code environment from a specified path in WSL. It does 
     ```
 2. Add a new function to the file that will launch VS Code from a specified path. For example:
     ```bash
-    <macro_name>(){
-        cd <folder_path> && code .
+    MACRO_NAME(){
+        cd FOLDER_PATH && code .
     }
     ```
-    - `<macro_name>` is the name of the macro you want to run from WSL.
-    - `<folder_path>` is the path to the folder you want to open in VS Code.
+    - `MACRO_NAME` is the name of the macro you want to run from WSL.
+    - `FOLDER_PATH` is the path to the folder you want to open in VS Code.
 
 3. Source `.bash_aliases` by appending the following line to your `.bashrc` file if it doesn't already exist:
     ```bash
