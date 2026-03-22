@@ -1,4 +1,4 @@
-# Launch WSL VS-Code Environment
+# Open Repository in VS Code from SourceTree
 
 This configuration is for a custom action inside SourceTree that allows you to open VS Code from the repo root.
 
