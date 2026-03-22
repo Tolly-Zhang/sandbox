@@ -36,12 +36,11 @@ This macro launches a VS Code environment from a specified path in WSL. It does 
 5. Test the macro by double-clicking the .vbs file. It should launch a VS Code environment at the specified path in WSL. If `ShowWindow` is `false` (default), the script launches in hidden mode.
 
 ## Configuration
-The fields in the `config.json` file are as follows:
 
-| Parameter    | Required | Usage                                                                    |
-|:------------:|:--------:|:-------------------------------------------------------------------------|
-| `WSLCommand` | Yes      | Name of macro/function in WSL                                            |
-| `ShowWindow` | No       | `true` to keep the PowerShell window visible, `false` to relaunch hidden |
+| Parameter    | Usage                                                                    |
+|:------------:|:-------------------------------------------------------------------------|
+| `WSLCommand` | Name of macro/function in WSL                                            |
+| `ShowWindow` | `true` to keep the PowerShell window visible, `false` to relaunch hidden |
 
 ## Usage
 Double-click the .vbs file to launch the macro. You can also create a shortcut to the .vbs file for easier access.

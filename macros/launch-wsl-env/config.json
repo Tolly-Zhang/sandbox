@@ -1,3 +1,4 @@
 {
-  "WSLCommand": "<MACRO_NAME>"
+  "WSLCommand": "<MACRO_NAME>",
+  "ShowWindow": true
 }
