@@ -20,4 +20,8 @@ Each one can be downloaded as a `.zip` file by clicking the **Download ZIP** bad
 |              #               | Name                   | Description                                                  |
 | :--------------------------: | :--------------------- | :----------------------------------------------------------- |
 | [[1]](macros/launch-wsl-env) | Launch WSL Environment | Launches a VS Code environment from a specified path in WSL. |
-|  [[2]](macros/pdf-underlay)  | PDF Underlay           | Adds an underlay to PDF files using a reference PDF.         |   
+
+## Scripts
+|              #              | Name         | Description                                          |
+| :-------------------------: | :----------- | :--------------------------------------------------- |
+| [[1]](scripts/pdf-underlay) | PDF Underlay | Adds an underlay to PDF files using a reference PDF. |
