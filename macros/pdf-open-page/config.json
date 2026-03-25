@@ -1,0 +1,19 @@
+{
+  "preferredViewer": "",
+  "viewerPath": "",
+  "viewerArgsTemplate": "",
+  "viewers": {
+    "SumatraPDF": {
+      "path": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+      "args": "-page {page} {file}"
+    },
+    "AcrobatReader": {
+      "path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe",
+      "args": "/A \"page={page}\" {file}"
+    },
+    "PDFXChange": {
+      "path": "C:\\Program Files\\Tracker Software\\PDF Editor\\PDFXEdit.exe",
+      "args": "/A \"page={page}\" {file}"
+    }
+  }
+}
