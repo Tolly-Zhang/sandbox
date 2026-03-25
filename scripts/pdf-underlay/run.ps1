@@ -424,6 +424,8 @@ function Invoke-ScannedUnderlay {
         Push-Location $work
         $pushed = $true
 
+        Write-Progress -Id 2 -Activity "Scanned underlay" -Status "Rasterizing PDF pages..." -PercentComplete 5
+
         Invoke-Tool -Tool $PdfToPpm -Arguments @("-png", "-r", [string]$effectiveDpi, $ResolvedTargetPdf, "overlay") -FailureMessage "pdftoppm failed for '$ResolvedTargetPdf'" -Quiet
 
         $overlayPages = Get-ChildItem -LiteralPath $work -Filter "overlay-*.png" | Sort-Object Name
@@ -431,7 +433,11 @@ function Invoke-ScannedUnderlay {
             throw "No overlay pages extracted from target PDF."
         }
 
+        $transparentIndex = 0
         foreach ($ov in $overlayPages) {
+            $transparentIndex++
+            $transparentPercent = [int](5 + (($transparentIndex / [double]$overlayPages.Count) * 25))
+            Write-Progress -Id 2 -Activity "Scanned underlay" -Status ("Making page transparent {0}/{1}" -f $transparentIndex, $overlayPages.Count) -PercentComplete $transparentPercent
             Invoke-Tool -Tool $Magick -Arguments @($ov.Name, "-fuzz", ("{0}%" -f $Fuzz), "-transparent", "white", ("t_" + $ov.Name)) -FailureMessage "ImageMagick transparency conversion failed for '$($ov.Name)'" -Quiet
         }
 
@@ -440,7 +446,11 @@ function Invoke-ScannedUnderlay {
             throw "No transparent overlay images produced."
         }
 
+        $pdfConvertIndex = 0
         foreach ($png in $transOverlayPages) {
+            $pdfConvertIndex++
+            $pdfConvertPercent = [int](30 + (($pdfConvertIndex / [double]$transOverlayPages.Count) * 25))
+            Write-Progress -Id 2 -Activity "Scanned underlay" -Status ("Converting page to PDF {0}/{1}" -f $pdfConvertIndex, $transOverlayPages.Count) -PercentComplete $pdfConvertPercent
             $pdfName = $png.BaseName + ".pdf"
             Invoke-Tool -Tool $Magick -Arguments @($png.Name, "-background", "none", "-alpha", "Background", $pdfName) -FailureMessage "ImageMagick PDF conversion failed for '$($png.Name)'" -Quiet
         }
@@ -464,6 +474,9 @@ function Invoke-ScannedUnderlay {
             $pageNum = $i + 1
             $overlayPdf = $overlayPdfs[$i].Name
 
+            $stampPercent = [int](60 + (($pageNum / [double]$overlayPdfs.Count) * 35))
+            Write-Progress -Id 2 -Activity "Scanned underlay" -Status ("Stamping page {0}/{1}" -f $pageNum, $overlayPdfs.Count) -PercentComplete $stampPercent
+
             $underlayPageNum = (($i % $underlayPageCount) + 1)
             $underlayPageFile = "underlay_page_$pageNum.pdf"
             Invoke-Tool -Tool $PdfTk -Arguments @($UnderlayPdf, "cat", [string]$underlayPageNum, "output", $underlayPageFile) -FailureMessage "pdftk page extraction failed for output page $pageNum" -Quiet -SuppressStdErr
@@ -481,11 +494,15 @@ function Invoke-ScannedUnderlay {
         $mergeArgs = @()
         $mergeArgs += $resultPdfList
         $mergeArgs += "cat", "output", "result.pdf"
+        Write-Progress -Id 2 -Activity "Scanned underlay" -Status "Merging stamped pages..." -PercentComplete 98
         Invoke-Tool -Tool $PdfTk -Arguments $mergeArgs -FailureMessage "pdftk final merge failed" -Quiet -SuppressStdErr
 
         Move-Item -LiteralPath (Join-Path $work "result.pdf") -Destination $ResolvedTargetPdf -Force
+        Write-Progress -Id 2 -Activity "Scanned underlay" -Status "Done" -PercentComplete 100
     }
     finally {
+        Write-Progress -Id 2 -Activity "Scanned underlay" -Completed
+
         if ($pushed) {
             Pop-Location
         }
