@@ -20,6 +20,7 @@ Each one can be downloaded as a `.zip` file by clicking the **Download ZIP** bad
 |              #               | Name                   | Description                                                  |
 | :--------------------------: | :--------------------- | :----------------------------------------------------------- |
 | [[1]](macros/launch-wsl-env) | Launch WSL Environment | Launches a VS Code environment from a specified path in WSL. |
+| [[2]](macros/pdf-open-page)  | PDF Open Page          | Opens a PDF directly to a requested page.                    |
 
 ## Scripts
 |              #              | Name         | Description                                          |
