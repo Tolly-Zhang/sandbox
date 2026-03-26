@@ -38,7 +38,7 @@ function Complete-Run {
     exit 0
 }
 
-function Fail-Run {
+function Stop-Run {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Message,
@@ -414,7 +414,7 @@ function Read-Config {
     try {
         return Get-Content -LiteralPath $ConfigPath -Raw | ConvertFrom-Json -ErrorAction Stop
     } catch {
-        Fail-Run -Message "Failed to parse config.json: $($_.Exception.Message)"
+        Stop-Run -Message "Failed to parse config.json: $($_.Exception.Message)"
     }
 }
 
@@ -489,21 +489,21 @@ function Resolve-TargetPdfPath {
 
     $configuredPdfFiles = Get-ConfiguredPdfFiles -Config $Config
     if ($configuredPdfFiles.Count -eq 0) {
-        Fail-Run -Message 'No configured PDFs found in config.json (pdfFiles).' -Title 'Configuration error'
+        Stop-Run -Message 'No configured PDFs found in config.json (pdfFiles).' -Title 'Configuration error'
     }
 
     if ($PdfIndex -gt $configuredPdfFiles.Count) {
-        Fail-Run -Message "PdfIndex $PdfIndex is out of range. Valid values: 1-$($configuredPdfFiles.Count)." -Title 'Invalid index'
+        Stop-Run -Message "PdfIndex $PdfIndex is out of range. Valid values: 1-$($configuredPdfFiles.Count)." -Title 'Invalid index'
     }
 
     $selectedPdf = [System.Environment]::ExpandEnvironmentVariables($configuredPdfFiles[$PdfIndex - 1])
     if (-not [System.IO.Path]::IsPathRooted($selectedPdf)) {
-        Fail-Run -Message "Configured path at index $PdfIndex must be an absolute path: $selectedPdf" -Title 'Configuration error'
+        Stop-Run -Message "Configured path at index $PdfIndex must be an absolute path: $selectedPdf" -Title 'Configuration error'
     }
 
     $resolvedPdf = Resolve-ExistingFilePath -Path $selectedPdf
     if (-not $resolvedPdf) {
-        Fail-Run -Message "Configured PDF does not exist at index ${PdfIndex}: $selectedPdf" -Title 'File not found'
+        Stop-Run -Message "Configured PDF does not exist at index ${PdfIndex}: $selectedPdf" -Title 'File not found'
     }
 
     return $resolvedPdf
@@ -534,11 +534,11 @@ function Resolve-RequestedPageNumber {
         } else {
             'Please enter a valid page number (>=1).'
         }
-        Fail-Run -Message $message -Title 'Invalid input'
+        Stop-Run -Message $message -Title 'Invalid input'
     }
 
     if ($logicalPageLookup -and $logicalPageLookup.NumberOfPages -gt 0 -and $pageNum -gt $logicalPageLookup.NumberOfPages) {
-        Fail-Run -Message "Page number is out of range. Max page is $($logicalPageLookup.NumberOfPages)." -Title 'Invalid input'
+        Stop-Run -Message "Page number is out of range. Max page is $($logicalPageLookup.NumberOfPages)." -Title 'Invalid input'
     }
 
     return $pageNum
@@ -624,7 +624,7 @@ function Start-PdfAtPage {
     try {
         Start-Process -FilePath $ViewerPath -ArgumentList $argString
     } catch {
-        Fail-Run -Message "Failed to start viewer: $($_.Exception.Message)"
+        Stop-Run -Message "Failed to start viewer: $($_.Exception.Message)"
     }
 }
 
