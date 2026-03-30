@@ -14,6 +14,7 @@ Each one can be downloaded as a `.zip` file by clicking the **Download ZIP** bad
 |                     #                      | Name            | Description                                                                 |
 | :----------------------------------------: | :-------------- | :-------------------------------------------------------------------------- |
 | [[1]](configs/sourcetree-open-in-vs-code/) | Open in VS Code | A custom action in Sourcetree that opens the current repository in VS Code. |
+|   [[2]](configs/task-scheduler-startup/)   | Task Scheduler  | A Task Scheduler configuration to open applications on startup.             |
 
 ## Macros
 
