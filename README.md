@@ -3,7 +3,7 @@ A collection of custom-built scripts, configs, and macros intended for random, s
 
 ## Usage 
 
-Each script or macro is contained in its own folder with a `README` and `config.json` file. 
+Each config, script or macro is contained in its own folder with a `README` and `config.json` file. 
 - The `README` contains instructions for setup, configuration, and usage. 
 - The `config.json` allows you to customize the behavior of the script or macro.
 
